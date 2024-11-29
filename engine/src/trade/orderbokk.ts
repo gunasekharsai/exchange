@@ -26,7 +26,7 @@ export class Orderbook{
     lastTradeId :number;
     currentPrice:number;
 
-    constructor(asks: Order[], bids:Order[], baseAsset:string, lastTradeId:number, currentPrice:number){
+    constructor( baseAsset:string,asks: Order[], bids:Order[], lastTradeId:number, currentPrice:number){
         this.asks = asks;
         this.bids = bids;
         this.baseAsset = baseAsset;
@@ -38,6 +38,7 @@ export class Orderbook{
         return `${this.baseAsset} - ${this.quoteAsset}`;
     }
 
+
     getSnapshot(){
         return {
             baseAsset:this.baseAsset,
@@ -47,6 +48,7 @@ export class Orderbook{
             bids:this.bids
         }
     }
+
     addOrder(order:Order){
         if(order.side === "buy"){
             const {executedQty, fills} =  this.matchBid(order);
@@ -78,6 +80,7 @@ export class Orderbook{
             }
         }
     }
+
 
     matchBid(order:Order):{
         fills: Fill[],
@@ -112,6 +115,7 @@ export class Orderbook{
         };
     }
 
+    
     matchAsk(order:Order):{
         fills: Fill[],
         executedQty:number

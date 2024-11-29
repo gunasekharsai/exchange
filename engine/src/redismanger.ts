@@ -1,4 +1,3 @@
-import RedisClient from "@redis/client/dist/lib/client";
 import { createClient, RedisClientType } from "redis";
 import { WsMessage } from "./types/tows";
 import { MessageToApi } from "./types/toapi";

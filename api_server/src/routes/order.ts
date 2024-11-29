@@ -19,7 +19,8 @@ orderRouter.post("/", async (req, res) =>{
         }
     });
     res.json(response.payload);
-})
+});
+
 
 orderRouter.delete("/cancel", async (req, res) =>{
     const {orderId, market} = req.body;

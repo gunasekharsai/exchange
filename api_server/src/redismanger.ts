@@ -27,11 +27,14 @@ export class Redismanger {
 
     public sendAndAwait(message:MessageToEngine){
         return new Promise<MessageFromOrderbook>((resolve) => {
+            console.log("inside sendAndAwait");
             const id = this.getRandomClientId();
-            this.client.subscribe(id, (message) => {
+             this.client.subscribe(id, (message) => {
                 this.client.unsubscribe(id);
+                console.log("inside sendAndAwait2");
                 resolve(JSON.parse(message));
             });
+            console.log("inside sendAndAwait3");
             this.publisher.lPush("messages", JSON.stringify({ clientId: id, message }));
         });
     }
